@@ -1,7 +1,10 @@
 package com.esed.pagopa.pdf.webservice;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.stream.Collectors;
 
 import javax.ws.rs.client.Client;
@@ -24,7 +27,9 @@ public class Test {
 			
 			ObjectMapper objectMapper = new ObjectMapper();
 			
-			String json = Files.readAllLines(null).stream().collect(Collectors.joining());
+			String json = Files.
+					readAllLines(Paths.get("C:\\work\\micci_pagonet\\git\\com.esed.pagopa.pdf\\src\\main\\java\\com\\esed\\pagopa\\pdf\\test\\File512.json"))
+					.stream().collect(Collectors.joining());
 			
 			Flusso flusso = objectMapper.readValue(json, Flusso.class);
 			
