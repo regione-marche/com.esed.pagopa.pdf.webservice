@@ -1,6 +1,7 @@
 package com.esed.pagopa.pdf.webservice.resources;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.UUID;
 
 import javax.ws.rs.Consumes;
@@ -18,9 +19,11 @@ import com.esed.pagopa.pdf.SalvaPDF;
 import com.esed.pagopa.pdf.SalvaPDFBolzano;
 import com.esed.pagopa.pdf.SalvaPDFRegMarche;
 import com.esed.pagopa.pdf.ValidazioneException;
+import com.esed.pagopa.pdf.config.PropKeys;
 import com.esed.pagopa.pdf.webservice.applications.ApplicationV1;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.seda.commons.properties.tree.PropertiesTree;
 import com.seda.payer.commons.geos.Flusso;
 import com.seda.payer.commons.inviaAvvisiForGeos.FlussoMassivo;
 
@@ -91,15 +94,28 @@ public class Resource {
 	//inizio LP PG210070
 	@POST
 	@Path("/pdfBolzano")
-	public Response getPdfBolzano(Flusso flusso) {
+	public Response getPdfBolzano(Flusso flusso) throws IOException, ValidazioneException {
 		
 		byte[] array = null;
+		String tipoStampa = "";
+		
+		if(flusso.TipoStampa.equals("jppade")) {
+			tipoStampa = "jppade";
+		}else {
+			if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.tipoStampa.format("000P6")).equals("jppa")) {
+				tipoStampa = "jppa";
+			}
+		}
+		
 		
 		try {
-			array = SalvaPDFBolzano.SalvaFile(flusso);
-		} catch (IOException | ValidazioneException e) {
-			logger.error(null, e);
-			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+			if(tipoStampa.equals("jppa") || tipoStampa.equals("jppade")) {
+				array = Base64.getDecoder().decode(SalvaPDFBolzano.SalvaFile(flusso,tipoStampa,ApplicationV1.getPropertiesTree()));
+			}else {
+				array = SalvaPDFBolzano.SalvaFile(flusso,tipoStampa,ApplicationV1.getPropertiesTree());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		ResponseBuilder response = Response.status(Status.OK).entity(array);
