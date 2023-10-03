@@ -110,6 +110,7 @@ public class Resource {
 		
 		try {
 			if(tipoStampa.equals("jppa") || tipoStampa.equals("jppade")) {
+				System.out.println("Dentro Webservice - Stampa di tipo jppa");
 				array = Base64.getDecoder().decode(SalvaPDFBolzano.SalvaFile(flusso,tipoStampa,ApplicationV1.getPropertiesTree()));
 			}else {
 				array = SalvaPDFBolzano.SalvaFile(flusso,tipoStampa,ApplicationV1.getPropertiesTree());
