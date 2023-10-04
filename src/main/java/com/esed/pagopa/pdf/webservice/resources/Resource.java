@@ -102,7 +102,7 @@ public class Resource {
 		if(flusso.TipoStampa.equals("jppade")) {
 			tipoStampa = "jppade";
 		}else {
-			if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.tipoStampa.format("000P6")).equals("jppa")) {
+			if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format("000P6")).equals("Y")) {
 				tipoStampa = "jppa";
 			}
 		}
