@@ -49,10 +49,24 @@ public class Resource {
 		}
 		
 		byte[] array = null;
+		String tipoStampa = "";
+
+			if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format("000P6")).equals("Y")
+					|| ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format(flusso.CuteCute)).equals("Y")) {
+				tipoStampa = "jppa";
+		}
 		
 		try {
 			SalvaPDF salvaPDF = new SalvaPDF(ApplicationV1.getPropertiesTree());
-			array = salvaPDF.SalvaFile(flusso);
+			
+			if(tipoStampa.equals("jppa")) {
+				array = Base64.getDecoder()
+						.decode(salvaPDF.SalvaFile(flusso,tipoStampa));
+			}else {
+			array = salvaPDF.SalvaFile(flusso,tipoStampa);
+			}
+			
+			
 		} catch (IOException | ValidazioneException e) {
 			logger.error(null, e);
 			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
