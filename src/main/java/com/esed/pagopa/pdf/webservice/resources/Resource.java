@@ -51,8 +51,7 @@ public class Resource {
 		byte[] array = null;
 		String tipoStampa = "";
 
-			if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format("000P6")).equals("Y")
-					|| ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format(flusso.CuteCute)).equals("Y")) {
+			if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format(flusso.CuteCute)).equals("Y")) {
 				tipoStampa = "jppa";
 		}
 		
@@ -60,6 +59,7 @@ public class Resource {
 			SalvaPDF salvaPDF = new SalvaPDF(ApplicationV1.getPropertiesTree());
 			
 			if(tipoStampa.equals("jppa")) {
+				System.out.println("Stampa tipo jppa dentro webservice");
 				array = Base64.getDecoder()
 						.decode(salvaPDF.SalvaFile(flusso,tipoStampa));
 			}else {
@@ -113,15 +113,10 @@ public class Resource {
 		byte[] array = null;
 		String tipoStampa = "";
 		
-		if(flusso.TipoStampa.equals("jppade")) {
-			tipoStampa = "jppade";
-		}else {
 			if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format("000P6")).equals("Y")) {
 				tipoStampa = "jppa";
 			}
-		}
-		
-		
+
 		try {
 			if(tipoStampa.equals("jppa") || tipoStampa.equals("jppade")) {
 				System.out.println("Dentro Webservice - Stampa di tipo jppa");
