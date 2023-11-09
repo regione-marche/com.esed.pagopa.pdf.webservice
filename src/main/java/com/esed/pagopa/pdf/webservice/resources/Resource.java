@@ -57,7 +57,7 @@ public class Resource {
 		}
 		else {
 			tipoStampa=ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format(flusso.CuteCute));
-		
+		}
 		try {
 			SalvaPDF salvaPDF = new SalvaPDF(ApplicationV1.getPropertiesTree());
 			
@@ -122,7 +122,7 @@ public class Resource {
 		}
 		else {
 			tipoStampa=ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format(flusso.CuteCute));
-		
+		}
 
 		try {
 			if(tipoStampa.equals("jppa") || tipoStampa.equals("jppade")) {
