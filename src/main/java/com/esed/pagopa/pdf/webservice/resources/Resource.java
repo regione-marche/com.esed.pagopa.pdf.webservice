@@ -50,9 +50,14 @@ public class Resource {
 		
 		byte[] array = null;
 		String tipoStampa = "";
-
-			if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format(flusso.CuteCute)).equals("Y")) {
+		
+		if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format("000P6"))==null) {
+			tipoStampa = "";
+		}
+		else {
+			if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format("000P6")).equals("Y")) {
 				tipoStampa = "jppa";
+			}
 		}
 		
 		try {
@@ -113,8 +118,13 @@ public class Resource {
 		byte[] array = null;
 		String tipoStampa = "";
 		
-			if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format("000P6")).equals("Y")) {
-				tipoStampa = "jppa";
+			if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format("000P6"))==null) {
+				tipoStampa = "";
+			}
+			else {
+				if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format("000P6")).equals("Y")) {
+					tipoStampa = "jppa";
+				}
 			}
 
 		try {
