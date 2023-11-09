@@ -51,11 +51,11 @@ public class Resource {
 		byte[] array = null;
 		String tipoStampa = "";
 		
-		if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format("000P6"))==null) {
+		if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format(flusso.CuteCute))==null) {
 			tipoStampa = "";
 		}
 		else {
-			if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format("000P6")).equals("Y")) {
+			if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format(flusso.CuteCute)).equals("Y")) {
 				tipoStampa = "jppa";
 			}
 		}
