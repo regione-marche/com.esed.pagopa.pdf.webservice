@@ -50,11 +50,14 @@ public class Resource {
 		
 		byte[] array = null;
 		String tipoStampa = "";
-
-			if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format(flusso.CuteCute)).equals("Y")) {
-				tipoStampa = "jppa";
-		}
 		
+		if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format(flusso.CuteCute))==null
+				||ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format(flusso.CuteCute)).equals("")) {
+			tipoStampa = "";
+		}
+		else {
+			tipoStampa=ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format(flusso.CuteCute));
+		}
 		try {
 			SalvaPDF salvaPDF = new SalvaPDF(ApplicationV1.getPropertiesTree());
 			
@@ -113,9 +116,13 @@ public class Resource {
 		byte[] array = null;
 		String tipoStampa = "";
 		
-			if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format("000P6")).equals("Y")) {
-				tipoStampa = "jppa";
-			}
+		if(ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format(flusso.CuteCute))==null
+				||ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format(flusso.CuteCute)).equals("")) {
+			tipoStampa = "";
+		}
+		else {
+			tipoStampa=ApplicationV1.getPropertiesTree().getProperty(PropKeys.stampaJppa.format(flusso.CuteCute));
+		}
 
 		try {
 			if(tipoStampa.equals("jppa") || tipoStampa.equals("jppade")) {
