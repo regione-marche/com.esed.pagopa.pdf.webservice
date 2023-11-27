@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p %c - %m%n</Property>
+    </Properties>
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+        <RollingFile name="com-esed-pagopa-pdf-ws"
+                	  fileName="../standalone/log/com-esed-pagopa-pdf-ws.log"
+                	  filePattern="mgp.%i.log.gz"
+                	  ignoreExceptions="false" filePermissions="rw-rw-r--">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+			<!-- <JsonTemplateLayout eventTemplateUri="classpath:ElasticsearchJsonEventLayoutV1.json"/> -->
+            <Policies>
+                <SizeBasedTriggeringPolicy size="500MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10" />
+        </RollingFile>
+        <RollingFile name="com-esed-pagopa-pdf-ws-error"
+                	 fileName="../standalone/log/com-esed-pagopa-pdf-ws-error.log"
+                	 filePattern="com-esed-pagopa-pdf-ws-error.%i.log"
+                     ignoreExceptions="false" filePermissions="rw-rw-r--">
+			<JsonTemplateLayout eventTemplateUri="classpath:ElasticsearchJsonEventLayoutV1.json"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="200MB" />
+            </Policies>
+            <ThresholdFilter level="ERROR"/>
+        </RollingFile>
+        <RollingFile name="com-esed-pagopa-pdf-ws-debug"
+                	 fileName="../standalone/log/com-esed-pagopa-pdf-ws-debug.log"
+                	 filePattern="com-esed-pagopa-pdf-ws-debug.%i.log"
+                     ignoreExceptions="false" filePermissions="rw-rw-r--">
+			<JsonTemplateLayout eventTemplateUri="classpath:ElasticsearchJsonEventLayoutV1.json"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="500MB" />
+            </Policies>
+            <ThresholdFilter level="DEBUG"/>
+            <DefaultRolloverStrategy max="10" />
+        </RollingFile>
+        
+        
+        
+        
+        
+                <RollingFile name="com-esed-pagopa-pdf"
+                	  fileName="../standalone/log/com-esed-pagopa-pdf.log"
+                	  filePattern="mgp.%i.log.gz"
+                	  ignoreExceptions="false" filePermissions="rw-rw-r--">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+			<!-- <JsonTemplateLayout eventTemplateUri="classpath:ElasticsearchJsonEventLayoutV1.json"/> -->
+            <Policies>
+                <SizeBasedTriggeringPolicy size="500MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10" />
+        </RollingFile>
+        <RollingFile name="com-esed-pagopa-pdf-error"
+                	 fileName="../standalone/log/com-esed-pagopa-pdf-error.log"
+                	 filePattern="com-esed-pagopa-pdf-error.%i.log"
+                     ignoreExceptions="false" filePermissions="rw-rw-r--">
+			<JsonTemplateLayout eventTemplateUri="classpath:ElasticsearchJsonEventLayoutV1.json"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="200MB" />
+            </Policies>
+            <ThresholdFilter level="ERROR"/>
+        </RollingFile>
+        <RollingFile name="com-esed-pagopa-pdf-debug"
+                	 fileName="../standalone/log/com-esed-pagopa-pdf-debug.log"
+                	 filePattern="com-esed-pagopa-pdf-debug.%i.log"
+                     ignoreExceptions="false" filePermissions="rw-rw-r--">
+			<JsonTemplateLayout eventTemplateUri="classpath:ElasticsearchJsonEventLayoutV1.json"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="500MB" />
+            </Policies>
+            <ThresholdFilter level="DEBUG"/>
+            <DefaultRolloverStrategy max="10" />
+        </RollingFile>
+        
+        
+    </Appenders>
+    <Loggers>
+		<Logger name="com.esed.pagopa.pdf.webservice" level="DEBUG" additivity="false">
+			<AppenderRef ref="com-esed-pagopa-pdf-ws" />
+            <AppenderRef ref="com-esed-pagopa-pdf-ws-debug" />
+            <AppenderRef ref="com-esed-pagopa-pdf-ws-error" />
+		</Logger>         
+        <Root level="INFO" >
+            <AppenderRef ref="STDOUT" />
+        </Root>
+        
+        <Logger name="com.esed.pagopa.pdf" level="DEBUG" additivity="false">
+			<AppenderRef ref="com-esed-pagopa-pdf" />
+            <AppenderRef ref="com-esed-pagopa-pdf-debug" />
+            <AppenderRef ref="com-esed-pagopa-pdf-error" />
+		</Logger>         
+        <Root level="INFO" >
+            <AppenderRef ref="STDOUT" />
+        </Root>
+        
+    </Loggers>
+</Configuration>
