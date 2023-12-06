@@ -23,12 +23,23 @@
 	</properties>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/resources</directory>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.2.1</version>
 				<configuration>
 					<warSourceDirectory>src/main/webapp</warSourceDirectory>
+					<archive>
+						<manifestEntries>
+							<Logging-Profile>com.esed.pagopa.pdf.webservice</Logging-Profile>
+							<Dependencies></Dependencies>
+						</manifestEntries>
+					</archive>
 				</configuration>
 			</plugin>
 		</plugins>
