@@ -8,10 +8,12 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-import org.apache.log4j.Logger;
+
 
 import com.esed.pagopa.pdf.webservice.config.PrintStrings;
 import com.esed.pagopa.pdf.webservice.resources.Resource;
+import com.seda.commons.logger.CustomLoggerManager;
+import com.seda.commons.logger.LoggerWrapper;
 import com.seda.commons.properties.PropertiesLoader;
 import com.seda.compatibility.SystemVariable;
 import com.seda.commons.properties.tree.PropertiesNodeException;
@@ -20,7 +22,7 @@ import com.seda.commons.properties.tree.PropertiesTree;
 @ApplicationPath("/v1") 
 public class ApplicationV1 extends Application {
 
-	private static Logger logger = Logger.getLogger(ApplicationV1.class);
+	private static LoggerWrapper logger = CustomLoggerManager.get(ApplicationV1.class);
 	private static final PropertiesTree propertiesTree;
 	
 	static {
