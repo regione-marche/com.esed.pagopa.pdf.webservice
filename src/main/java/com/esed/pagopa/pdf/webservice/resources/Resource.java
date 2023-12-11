@@ -13,8 +13,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
 
-import org.apache.log4j.Logger;
-
 import com.esed.pagopa.pdf.SalvaPDF;
 import com.esed.pagopa.pdf.SalvaPDFBolzano;
 import com.esed.pagopa.pdf.SalvaPDFRegMarche;
@@ -23,6 +21,8 @@ import com.esed.pagopa.pdf.config.PropKeys;
 import com.esed.pagopa.pdf.webservice.applications.ApplicationV1;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.seda.commons.logger.CustomLoggerManager;
+import com.seda.commons.logger.LoggerWrapper;
 import com.seda.commons.properties.tree.PropertiesTree;
 import com.seda.payer.commons.geos.Flusso;
 import com.seda.payer.commons.inviaAvvisiForGeos.FlussoMassivo;
@@ -32,7 +32,7 @@ import com.seda.payer.commons.inviaAvvisiForGeos.FlussoMassivo;
 @Path("resource")
 public class Resource {
 
-	private static final Logger logger = Logger.getLogger(Resource.class);
+	protected LoggerWrapper logger = CustomLoggerManager.get(Resource.class);
 	
 	@POST
 	@Path("/pdf")
